@@ -1,0 +1,18 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+{% load socialaccount %}
+
+{% block content %}
+<div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 ml-auto mr-auto login-box">
+    <form action="" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <a href="{% url 'account_reset_password' %}" >Forgot Password?</a>
+    <input type="submit" value="Log In" class="btn btn-primary" style="margin:10px 0;">
+    </form>
+    <hr>
+    <p style="text-align: center">or</p>
+    <a class="btn btn-lg btn-google btn-block text-uppercase btn-outline" href="{% provider_login_url 'google' %}"><img src="https://img.icons8.com/color/16/000000/google-logo.png"> Login With Google</a> 
+
+</div>
+{% endblock content %}{

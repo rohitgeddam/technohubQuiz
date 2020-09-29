@@ -1,0 +1,119 @@
+{% extends '_base.html'%}
+{% load static %}
+
+
+
+{% block title %}
+All Quiz
+{% endblock title %}
+
+
+{% block content %}
+{% autoescape off %}
+<div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 ml-auto mr-auto">
+
+
+    <ul class="nav nav-pills mb-3  nav-justified" id="pills-tab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="pills-upcomming-tab" data-toggle="pill" href="#pills-upcomming" role="tab"
+                aria-controls="pills-upcomming" aria-selected="true">Upcomming Quizes</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-ongoing-tab" data-toggle="pill" href="#pills-ongoing" role="tab"
+                aria-controls="pills-ongoing" aria-selected="false">Ongoing Quizes</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-previous-tab" data-toggle="pill" href="#pills-previous" role="tab"
+                aria-controls="pills-previous" aria-selected="false">Previous Quizes</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+
+
+        <div class="tab-pane fade show active" id="pills-upcomming" role="tabpanel" aria-labelledby="pills-upcomming-tab">
+
+
+          {% if upcomming_quiz|length > 0 %}
+                 <div style="margin:50px 0">
+                
+                {% for quiz in  upcomming_quiz %}
+                <div class="card w-100" style="margin: 20px 0">
+                    <div class="card-body">
+                        <h5 class="card-title"><b>{{quiz.name}}</b></h5>
+                        <p class="card-text">{{quiz.description}}</p>
+                        <hr>
+                        <p>Starts On: <b>{{quiz.start_time}}</b></p>
+                        {% comment %} <a class="btn btn-warning" href="{{quiz.get_absolute_url}}">Start Quiz</a>
+                        {% endcomment %}
+                    </div>
+                </div>
+                {% endfor %}
+                </div>
+
+            {% else %}
+            <p class="text-muted text-center">No upcomming quizes for now. We will have new quizes soon.</p>
+            {% endif %}
+
+            
+
+        </div>
+
+
+        <div class="tab-pane fade" id="pills-ongoing" role="tabpanel" aria-labelledby="pills-ongoing-tab">
+           {% if on_going_quiz|length > 0 %}
+
+            <div style="margin:50px 0">
+                {% for quiz in  on_going_quiz %}
+                <div class="card w-100" style="margin: 20px 0">
+                    <div class="card-body">
+                        <h5 class="card-title"><b>{{quiz.name}}</b></h5>
+                        <p class="card-text">{{quiz.description}}</p>
+                        <hr>
+                        <p>Started On:<b>{{quiz.start_time}}</b></p>
+                        <p>Ends On: <b>{{quiz.end_time}}</b></p>
+                        <a class="btn btn-warning quiz-start-btn" href="{{quiz.get_absolute_url}}">Start Quiz</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% else %}
+            <p class="text-muted text-center">There are no ongoing quizes.</p>
+            {% endif %}
+              
+
+        </div>
+
+
+        <div class="tab-pane fade" id="pills-previous" role="tabpanel" aria-labelledby="pills-previous-tab">
+           
+
+                {% if past_quiz|length > 0 %}
+                 <div style="margin:50px 0">
+               
+                {% for quiz in  past_quiz %}
+                <div class="card w-100" style="margin: 20px 0">
+                    <div class="card-body">
+                        <h5 class="card-title"><b>{{quiz.name}}</b></h5>
+                        <p class="card-text">{{quiz.description}}</p>
+                        <hr>
+                        <p>Ended On: <b>{{quiz.end_time}}</b></p>
+                        <a class="btn btn-dark quiz-leaderboard-btn" href="{% url 'quiz_leaderboard' quiz.slug%}">Quiz
+                            Leader Board</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% else %}
+            <p class="text-muted text-center">We Havent Had Any quizes Till Now.</p>
+            {% endif %}
+
+        </div>
+    </div>
+
+
+</div>
+
+{% endautoescape %}
+{% endblock content %}

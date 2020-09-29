@@ -1,0 +1,22 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+{% load socialaccount %}
+{% block content %}
+<div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 ml-auto mr-auto login-box">
+
+    <form action="" method="post">
+
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit" value="Sign Up" class="btn btn-primary">
+    
+    </form>
+      <hr>
+    <p style="text-align: center">or</p>
+
+    <a class="btn btn-lg btn-google btn-block text-uppercase btn-outline" href="{% provider_login_url 'google' %}"><img src="https://img.icons8.com/color/16/000000/google-logo.png"> Signup With Google</a>
+</div>
+
+
+
+{% endblock content %}

@@ -1,0 +1,4 @@
+{% load i18n %}
+{% autoescape off %}
+{% blocktrans %}DSCxQUIZ. Please Confirm Your Sign Up{% endblocktrans %}
+{% endautoescape %}

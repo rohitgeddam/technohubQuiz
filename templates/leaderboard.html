@@ -1,0 +1,80 @@
+{% extends '_base.html'%}
+{% load static %}
+
+
+
+{% block title %}
+Leader Board
+{% endblock title %}
+
+
+{% block content %}
+<div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 ml-auto mr-auto">
+<h1> Leader Board </h1>
+
+<div style="margin: 50px 0; text-align: center;">
+
+
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+            aria-controls="pills-home" aria-selected="true">Top Scorers</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+            aria-controls="pills-profile" aria-selected="false">Top Participations</a>
+    </li>
+
+</ul>
+<div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+    <table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>UserName</th>
+            <th>Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in top_scorers %}
+
+        <tr>
+            <th scope="row">{{user.username}}</th>
+            <td style="text-align: center">{{user.score}}</td>
+        </tr>
+        {% endfor %}
+
+
+    </tbody>
+</table>
+    
+    </div>
+    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>UserName</th>
+            <th>Total Quizes Participated In</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in top_participations %}
+
+        <tr>
+            <th scope="row">{{user.username}}</th>
+            <td style="text-align: center">{{user.quiz_count}}</td>
+        </tr>
+        {% endfor %}
+
+
+    </tbody>
+</table>
+    </div>
+
+</div>
+
+</div>
+</div>
+
+
+{% endblock content %}

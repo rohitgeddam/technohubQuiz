@@ -1,0 +1,59 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Libre Baskerville', serif;
+
+}
+
+h1{
+    color: #2d4059;
+}
+
+
+.timer{
+    /* border: 1px solid black; */
+    padding:20px;
+    box-shadow: 0 10px 5px rgba(0,0,0,0.4);
+}
+
+.quiz-instructions{
+    padding:50px;
+    box-shadow: 0 10px 5px rgba(0,0,0,0.4);
+}
+
+.profile_page{
+    width:100%;
+    background: url("/static/img/profile_background.959d42abb7f2.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.sidebar {
+    color: white;
+    font-family: 'Roboto Mono', monospace;
+    background-image: url("/static/img/sidebar-5.08efb6321436.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    opacity:0.9;
+
+}
+
+.login-box{
+
+    
+    box-shadow: 2px 5px 10px rgba(0,0,0,0.7);
+    padding: 20px;
+    margin: 50px 0;
+}
+
+.login-box input[type="submit"]{
+    width: 100%;
+}
+
+.me{
+    position:fixed;
+    bottom:0;
+    font-size: 16px;
+    color: grey;
+}

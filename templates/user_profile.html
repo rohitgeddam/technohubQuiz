@@ -1,0 +1,93 @@
+{% extends '_base.html'%}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+My Profile
+{% endblock title %}
+
+
+{% block content %}
+<div class="profile_page">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 ml-auto mr-auto ">
+    <h1> My Profile </h1>
+    <div style="margin: 50px 0;">
+
+      <table class="table table-bordered table-dark">
+
+        <tbody>
+          <tr>
+            <th scope="row">First Name</th>
+            <td>{{user_profile.firstname}}</td>
+
+          </tr>
+          <tr>
+            <th scope="row">Last Name</th>
+            <td>{{user_profile.lastname}}</td>
+
+          </tr>
+          <tr>
+            <th scope="row">College</th>
+            <td colspan="2">{{user_profile.college_name}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Branch</th>
+            <td colspan="2">{{user_profile.branch}}</td>
+          </tr>
+
+          <tr>
+            <td colspan="2">
+              <a href="{% url 'profile_update' %}" class="btn btn-warning">update</a>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="table table-bordered table-dark">
+
+        <tbody>
+          <tr>
+            <th scope="row">Total Quiz Participation</th>
+            <td>{{all_attempted_quizes.count}}</td>
+          </tr>
+          <tr>
+            <th scope="row">My Best Score</th>
+            <td>N/A</td>
+          </tr>
+
+          <tr>
+            <th scope="row">My Best Rank</th>
+            <td>N/A</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin: 50px 0;">
+        {% if all_attempted_quizes|length > 0 %}
+        <h1>Quizes I Attempted </h1>
+        {% for quiz_instance in all_attempted_quizes %}
+
+
+        <div class="card" style="margin:20px 0;">
+          <h5 class="card-header">{{quiz_instance.quiz.name}}</h5>
+          <div class="card-body">
+            <h5 class="card-title">Score: {{quiz_instance.score}} </h5>
+            <p class="card-text">Rank: {{1}}</p>
+            <a href="{% url 'quiz_start' quiz_instance.quiz.slug%}" class="btn btn-primary">Check Your Response</a>
+          </div>
+        </div>
+
+        {% endfor %}
+
+
+        {% else %}
+        <p class="text-muted">You haven't participated in any quiz till now!!</p>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock content %}

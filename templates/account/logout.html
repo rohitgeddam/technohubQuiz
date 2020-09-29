@@ -1,0 +1,13 @@
+{% extends '_base.html' %}
+
+
+{% block content %}
+<div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 ml-auto mr-auto login-box">
+    <form action="{% url 'account_logout'%}" method="post" style="text-align: center;">
+
+    {% csrf_token %}
+    <h4>Do You Really want to logout?</h4>
+    <input type="submit" value="Yes Log Out" class="btn btn-danger">
+    </form>
+</div>
+{% endblock content %}

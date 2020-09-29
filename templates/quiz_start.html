@@ -1,0 +1,164 @@
+{% extends '_base.html'%}
+{% load static %}
+
+
+
+{% block title %}
+{{quiz.name}}
+{% endblock title %}
+
+
+{% block content %}
+<div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 ml-auto mr-auto">
+  <div id="quiz-app">
+
+    {{remaining_time_sec|json_script:"time_remaining"}}
+    {% if remaining_time_sec >= 0%}
+
+    <div class="timer">
+      <p>[[formated_date]]</p>
+    </div>
+    <h1 class="quiz_title">Quiz - {{quiz.name}}</h1>
+    <div class="quiz-instructions text-muted">
+      <ul>
+        <li>Do Not Reload The Page.</li>
+        <li>Do Not Click On Back Button.</li>
+        <li>Your Response will be automatically submited once timer ends.</li>
+      </ul>
+    </div>
+    {% endif %}
+
+
+
+    {% if attempted %}
+    {% autoescape off %}
+
+
+
+    <h2>Your Response</h2>
+
+
+    {% if remaining_time_sec <= 0%}
+    <p>Total Score - {{score}}</p>
+
+
+    <div class="table-responsive">
+
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Question</th>
+            <th scope="col">Your Answer</th>
+            <th scope="col">Correct Answer</th>
+            <th scope="col">Correct?</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for response in responses %}
+          <tr>
+            <th scope="row">{{response.question.text}}</th>
+
+            {% if response.user_option %}
+            <td>{{response.user_option.text}}</td>
+            {% else %}
+            <td>No Response</td>
+            {% endif %}
+            <td>{{response.correct_option.text}}</td>
+            <td>{{response.is_correct|yesno:"right,wrong"}}</td>
+          </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+
+    {% else %}
+    {% comment %} quiz has not completed yet we cannot show the answer yet. {% endcomment %}
+   
+<div class="alert alert-info" role="alert">
+ We can't show you the answers right now. Please comeback to check answers once the quiz ends.
+</div>
+
+    <div class="table-responsive">
+
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Question</th>
+            <th scope="col">Your Answer</th>
+            <th scope="col">Correct Answer</th>
+            <th scope="col">Correct?</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for response in responses %}
+          <tr>
+            <th scope="row">{{response.question.text}}</th>
+
+            {% if response.user_option %}
+            <td>{{response.user_option.text}}</td>
+            {% else %}
+            <td>No Response</td>
+            {% endif %}
+            <td>?</td>
+            <td>?</td>
+          </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+
+    {% endif %}
+    
+
+
+
+    {% endautoescape %}
+
+    {% else %}
+    {% autoescape off %}
+    <form method="POST" action="{% url 'quiz_submit' quiz.slug %}">
+      {%csrf_token %}
+      {% for question in  questions %}
+      <div class="card">
+        <div class="card-header">
+          Q{{forloop.counter}}. <b>{{question.text}}</b>
+        </div>
+        <div class="card-body">
+          <ul style="list-style-type: none">
+
+            {% for option in question.options.all %}
+            <li>
+              <input type="radio" id={{question.id}} name={{question.id}} value={{option.id}} />
+              <label for={{question.id}}>{{option.text}}</label>
+            </li>
+            {% endfor %}
+
+          </ul>
+        </div>
+      </div>
+
+
+
+
+      {% endfor %}
+      <button type="submit" class="btn btn-primary" ref="vue_submit" style="margin:20px 0; width:100%">Submit</button>
+    </form>
+    {% endautoescape %}
+    {% endif %}
+  </div>
+
+</div>
+{% endblock content %}
+
+{% block script %}
+{% comment %} development vue {% endcomment %}
+{% comment %} <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> {% endcomment %}
+{% comment %} production vue {% endcomment %}
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+<script src="{% static 'js/quiz_app.js' %}"></script>
+{% endblock script %}

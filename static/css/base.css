@@ -1,0 +1,146 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* font-family: 'Libre Baskerville', serif; */
+    font-family: "Roboto", Arial;
+}
+
+h1{
+    color: #2d4059;
+}
+
+
+
+.quiz-instructions{
+    padding:40px;
+    box-shadow: 0 0px 5px rgba(0,0,0,0.4);
+    margin: 20px 0;
+    
+
+}
+
+.profile_page{
+    width:100%;
+ 
+    font-weight: 100px;
+    height: 100%;
+ 
+}
+
+.sidebar {
+    /* color: white;
+ 
+    
+    background:url("/static/img/sidebar-2.jpg");
+    background-repeat: no-repeat;
+    background-position: center center; */
+ 
+    
+    /* background-size:cover; */
+    color: black;
+    position: relative;
+   
+
+}
+
+.sidebar a,h5{
+    z-index: 2;
+    color: black;
+}
+
+.sidebar-heading{
+    font-weight: bold;
+    color: white;
+    z-index: 3;
+}
+
+
+.sidebar-bg{
+
+    position: absolute;
+      filter: blur(3px);
+    -webkit-filter: blur(3px);
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /* opacity: 0.5; */
+}
+
+
+.login-box{
+
+    
+    box-shadow: 2px 5px 10px rgba(0,0,0,0.7);
+    padding: 20px;
+    margin: 50px 0;
+}
+
+.login-box input[type="submit"]{
+ 
+    width: 100%;
+}
+
+.me{
+    color: grey;
+    position:fixed;
+    bottom:0;
+    font-size: 12px;
+    color: #e0ece4;
+    left: 15px;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.timer{
+    /* text-align:center; */
+    font-weight: lighter;
+    z-index: 100;
+    font-weight: bold;
+    font-size: 2em;
+    position: fixed;
+    top: 0px;
+    /* left: auto; */
+    right: 0;
+    color: #132743;
+    padding: 10px;
+    font-family: monospace Arial sans-serif;
+}
+
+#quiz-app{
+    font-family: "Roboto", Arial;
+    font-weight: lighter;
+    
+}
+
+.quiz_title{
+  
+
+    text-align: center; margin:50px 0;
+}
+
+
+.quiz-start-btn{
+    width: 100%;
+}
+
+.quiz-leaderboard-btn{
+    width: 100%;
+
+}
+
+/* .google-btn{
+    border: 2px solid black;
+    background: rgba(238, 5, 5, 0.822);
+    width: 100%;
+} */
+
+.btn-google {
+    color: #545454;
+    font-size: 16px;
+    font-family: monospace;
+    background-color: #ffffff;
+    box-shadow: 0 1px 2px 1px #ddd
+}

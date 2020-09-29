@@ -1,0 +1,71 @@
+
+#header{
+    background: #f08a5d;
+    font-size: 36px;
+    font-family: 'Libre Baskerville', serif;
+    
+}
+
+h1{
+    color: white;
+}
+#header a:link, #header a:visited {
+    color: #fff;
+    font-size: 16px;
+}
+
+body{
+    background: #eeecda;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    background: #f08a5d;
+}
+
+#branding h1, #branding h1 a:link, #branding h1 a:visited {
+    color: #eeecda;
+    font-size: 36px;
+    font-weight: bold;
+    font-family: 'Libre Baskerville', serif;
+}
+
+#user-tools{
+    font-size: 16px;
+}
+
+
+
+.content p a{
+    color: black;
+}
+
+div.breadcrumbs{
+    background: #eeecda;
+    color: black;
+}
+
+div.breadcrumbs a{
+    color: black;
+}
+
+.module{
+    border-radius: 30px;
+}
+
+.djn-drag-handler b,span {
+    color: #f08a5d;
+}
+
+
+.button, input[type=submit], input[type=button], a.button {
+    background: #f08a5d;
+
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+
+
+    
+}
+
