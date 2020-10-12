@@ -65,8 +65,8 @@ def QuizStartPage(request, slug):
             
             user_response.append(data)
 
-        return render(request, 'quiz_start.html', {"quiz": quiz, "questions":questions, "attempted":  attempted,"responses": user_response, "score":score})
           
+        return render(request, 'quiz_start.html', {"quiz": quiz, "questions":questions, "attempted":  attempted, "remaining_time_sec":remaining_time_sec})
 
     return render(request, 'quiz_start.html', {"quiz": quiz, "questions":questions, "attempted":  attempted, "remaining_time_sec":remaining_time_sec})
     
