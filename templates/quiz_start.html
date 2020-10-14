@@ -13,7 +13,7 @@
   <div id="quiz-app">
 
     {{remaining_time_sec|json_script:"time_remaining"}}
-    {% if remaining_time_sec >= 0%}
+    {% if remaining_time_sec >= 1 and not attempted%}
 
     <div class="timer">
       <p>[[formated_date]]</p>
@@ -39,8 +39,10 @@
 
 
     {% if remaining_time_sec <= 0%}
-    <p>Total Score - {{score}}</p>
-
+    <p>Total Score - {{score}} </p>
+    <p>
+   Percentage - {{percentage}} %
+    </p>
 
     <div class="table-responsive">
 

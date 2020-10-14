@@ -40,11 +40,14 @@ def QuizStartPage(request, slug):
     attempted = QuizTaker.objects.filter(user=request.user.id,quiz=quiz.id).count() > 0
     user = request.user
     remaining_time_sec = int((quiz.end_time - timezone.now()).total_seconds())
-    
+    print("attem[ted", attempted); 
     if(attempted):
         score = QuizTaker.objects.filter(user=user, quiz=quiz).first().score
         
         user_response = []
+        score = 0
+        total_questions = len(questions)
+
         for question in questions:
           
             # try:
@@ -62,11 +65,13 @@ def QuizStartPage(request, slug):
             #         "user_option": None,
             #         "correct_option": response.correct_option
             #     }
-            
+            if (response.is_correct):
+                score = score + 1
+
             user_response.append(data)
 
-          
-        return render(request, 'quiz_start.html', {"quiz": quiz, "questions":questions, "attempted":  attempted, "remaining_time_sec":remaining_time_sec})
+        percentage = (score/total_questions) * 100
+        return render(request, 'quiz_start.html', {"quiz": quiz,"percentage":percentage, "score":score, "questions":questions, "attempted":  attempted, "remaining_time_sec":remaining_time_sec, "responses": user_response})
 
     return render(request, 'quiz_start.html', {"quiz": quiz, "questions":questions, "attempted":  attempted, "remaining_time_sec":remaining_time_sec})
     
