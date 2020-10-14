@@ -50,7 +50,7 @@ class QuizTaker(models.Model):
     user = models.ForeignKey(get_user_model(), related_name='quiz_takers',  on_delete=models.CASCADE)
     quiz = models.ForeignKey(Quiz, related_name='quiz_takers',  on_delete=models.CASCADE)
     score = models.DecimalField(decimal_places=2, default=0.0, max_digits=4)
-
+    completion_time =  models.DateTimeField(auto_now_add=True,null=True,blank=True)
     def __str__(self):
         return self.user.username
     
