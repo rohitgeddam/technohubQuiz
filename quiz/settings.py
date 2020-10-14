@@ -176,7 +176,7 @@ STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
 
 # required by allauth
-SITE_ID = 2
+SITE_ID = 1
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
