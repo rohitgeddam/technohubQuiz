@@ -165,7 +165,7 @@ def quiz_leaderboard(request, slug):
     quiz = Quiz.objects.filter(slug=slug).first()
 
 
-    top_scorers = QuizTaker.objects.filter(quiz=quiz).order_by("-score","completion_time")[:10]
+    top_scorers = QuizTaker.objects.filter(quiz=quiz).order_by("-score","completion_time")
         
     context = {
         "top_scorers": top_scorers,
